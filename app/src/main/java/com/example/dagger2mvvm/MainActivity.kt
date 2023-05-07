@@ -13,16 +13,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dagger2mvvm.databinding.ActivityMainBinding
 import com.example.dagger2mvvm.di.AppComponent
-import com.example.dagger2mvvm.di.DaggerAppComponent
 import com.example.dagger2mvvm.viewmodels.MainViewModel
-import com.example.dagger2mvvm.viewmodels.MainViewModelFactory
+import com.example.dagger2mvvm.viewmodels.ViewModelFactory
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    @Inject lateinit var mainViewModelFactory : MainViewModelFactory
+    @Inject lateinit var ViewModelFactory : ViewModelFactory
     lateinit var mainViewModel: MainViewModel
 
     @Inject lateinit var appComponent: AppComponent
@@ -36,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         appComponent = (application as FakerApplication).appComponent
         appComponent.inject(this)
 
-        mainViewModel = ViewModelProvider(this, mainViewModelFactory).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this, ViewModelFactory).get(MainViewModel::class.java)
 
 
         mainViewModel.productsList.observe(this, Observer {
