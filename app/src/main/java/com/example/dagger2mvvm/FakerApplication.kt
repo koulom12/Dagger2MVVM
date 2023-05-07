@@ -12,6 +12,6 @@ class FakerApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        appComponent = DaggerAppComponent.builder().build()
+        appComponent = DaggerAppComponent.factory().create(this)
     }
 }
